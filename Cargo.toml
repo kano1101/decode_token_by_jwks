@@ -1,0 +1,11 @@
+[package]
+name = "decode_token_by_jwks"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0.71"
+jsonwebkey-convert = "0.3.0"
+jsonwebtoken = "8.3.0"
+reqwest = { version = "0.11.17", default-features = false, features = ["json"] }
+serde = "1.0.160"
