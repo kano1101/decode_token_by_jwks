@@ -22,7 +22,7 @@ where
 }
 
 #[allow(dead_code)]
-pub async fn decode_username_from_token(token: &str, jwks_url: &str) -> anyhow::Result<String> {
+pub async fn decode_user_sub_from_token(token: &str, jwks_url: &str) -> anyhow::Result<String> {
     let kid = jsonwebtoken::decode_header(token)?
         .kid
         .ok_or(anyhow::anyhow!("failed to decoding header."))?;
