@@ -7,5 +7,6 @@ edition = "2021"
 anyhow = "1.0.71"
 jsonwebkey-convert = "0.3.0"
 jsonwebtoken = "8.3.0"
-reqwest = { version = "0.11.17", default-features = false, features = ["json"] }
+native-tls = { version = "0.2.11", features = ["vendored"] }
+reqwest = { version = "0.11.17", default-features = false, features = ["json", "native-tls"] }
 serde = "1.0.160"
