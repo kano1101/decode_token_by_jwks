@@ -30,12 +30,17 @@ pub async fn decode_user_sub_from_token(token: &str, jwks_url: &str) -> anyhow::
     let response = reqwest::get(jwks_url).await?;
 
     let jwks: JsonWebKeySet = response.json().await?;
+    tracing::info!("jwks: {:?}", jwks);
 
     let rsa_key: JsonWebKey = jwks
         .keys
         .into_iter()
         .find(|key| match &key {
-            JsonWebKey::RSAPublicKey { value, .. } => value.generic.kid.as_ref() == Some(&kid),
+            JsonWebKey::RSAPublicKey { value, .. } => {
+                tracing::warn!("kid1, {:?}", value.generic.kid.as_ref());
+                tracing::warn!("kid2, {:?}", Some(&kid));
+                value.generic.kid.as_ref() == Some(&kid)
+            }
             _ => false,
         })
         .ok_or(anyhow::anyhow!("failed to matching generic kid."))?;
